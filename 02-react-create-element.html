@@ -1,0 +1,33 @@
+<body>
+	<div id="root"></div>
+	<!-- Addition -->
+	<script src="https://unpkg.com/react@16.7.0/umd/react.production.min.js"></script>
+	<!-- Addition -->
+	<script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.production.min.js"></script>
+	<script type="text/javascript">
+		const rootElement = document.getElementById('root')
+		// Addition
+		const element = React.createElement(
+			'div', 
+			{
+				// Mid lesson change
+				// children: 'Hello World',
+				//Addition
+				children: React.createElement('span', null, 'Hello', ' World'),
+				className: 'container',
+			}, 
+			// Addition, children as arg 3
+			// 'Hello World',
+			// ', Goodbye World',
+		)
+		// Addition - test
+		console.log(element)
+		// Addition
+		ReactDOM.render(element, rootElement)
+		// Removal
+		// const element = document.createElement('div')
+		// element.textContent = 'Hello World'
+		// element.className = 'container'
+		// rootElement.appendChild(element)
+	</script>
+</body>
