@@ -6,11 +6,73 @@
 	<script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
     
     <script type="text/babel">
+        // Added - using JSX so the UI can resemble the declarative nature of html, need to capatalize message because of reasons below even though he gets an error and I dont. 
+        // Changing this means (check elements dev tools) that react.creatElement in the <Message> tag section will be Message not "message". So we are passing a reference to the function directly to the react.createElement call. 
+        // If you look at whats being rendered in the dom down in the body, it will be a div with class message. Jump to the console logs for more.
+        const Message = (props) => <div className="message">{props.children}</div>
+        //Added - declarative way to do it so we can nest these things as if its the children prop, accept children as the name of the prop. Nesting them allows you to pass anything that react can render, including for example the string or aditional components/ elements used in ths example.
         const element = (
             <div className="container">
-                <div className="message">Hello World</div>
+                <Message>
+                    Hello World
+                    <Message>Goodbye World</Message>
+                    <span>Hey There</span>
+                </Message>
             </div>
-        )
+        ) 
+        
+        //Added then removed to show nesting above. The two below are functionally equivalent
+        // const element = (
+        //     <div className="container">
+        //         <Message>Hello World</Message>
+        //         <Message children="Goodbye World" />
+        //     </div>
+        // ) 
+
+        //Added and removed because the one above uses the children prop instead of msg
+        // const Message = (props) => <div className="message">{props.msg}</div>
+        // Added to show the JSX rewrite version of the element below. They apparently dont need closing tags.
+        // const element = (
+        //     <div className="container">
+        //         <Message msg="Hello World" />
+        //         <Message msg="Goodbye World" />
+        //     </div>
+        // )  
+        
+        // Added and removed because i cant comment out within apparently - this is non jsx
+        // const element = (
+        //     <div className="container">
+        //         <Message>Hello World</Message>
+        //         {Message({msg: "Hello World"})}
+        //         {Message({msg: "Goodbye World"})}
+        //     </div>
+        // )        
+
+        //The top is type div, the bottom is type Message function
+        // console.log(<div>Hello World</div>)
+        //Same as calling react.createElement with the funtion youre referencing
+        // console.log(<Message>Hello World</Message>)
+        
+        // Added and Removed - arrow funtions to paramaterize a function
+        // Explination? I am not getting the error hes getting so Ill leave this ond and correct it above. Message needs to be uppercase. Message function retruns react element thats creating a div here...
+        // const message = (props) => <div className="message">{props.msg}</div>
+        // const element = (
+            // and creating message as a string here, we dont want a message as a string to create a DOM element that is a message type element, we want it to use the function so we can create additional react elements
+        //     <div className="container">
+        //         <message>Hello World</message>
+        //         {message({msg: "Hello World"})}
+        //         {message({msg: "Goodbye World"})}
+        //     </div>
+        // )
+
+        // Added and Removed - a way to not repeat yourself with a reusable component interpolated elsewhere
+        // const message = <div className="message">Hello World</div>
+        // const element = (
+        //     <div className="container">
+        //         {message}
+        //         {message}
+        //     </div>
+        // )
 
         ReactDOM.render(element, document.getElementById('root'))
     </script>

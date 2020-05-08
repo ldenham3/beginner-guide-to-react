@@ -184,8 +184,22 @@ Apparently babel 6 didnt have this shorthand, had to change to bable 7. file 05 
 -----------------------------------------------------
 7) (file 06) Create a Simple Reusable React Component
 -----------------------------------------------------
+Functions needed to paramaterize. 
+Arrow Functions: (Whatever ACCEPTEDPARAMETERS.VALUENAME is is what we will interpolate into the children prop for the div created [doesnt have to be a div, that was just the easiest way to lay it out])
 
+	```
+	const ELEMENTNAME = (ACCEPTEDPARAMETERS) => <div className="CLASSNAME">{ACCEPTEDPARAMETERS.VALUENAME}</div>
 
+	call: 
+	{ELEMENTNAME({VALUENAME: "whatever thing"})}
+	```
+
+If you call a function as a tag to render a React Component, it will be unrecignized unless you start its name with a capital letter. 
+(Lots of notes in file 06, its confusing if you cant see it)
+When you give a capital letter in JSX its the same as calling React.createElement with the function you are referencing, which allows you to make a custom component that you can reuse to use code over and over again. I think its basically a fuunction call? 
+Yeah, see file 06 for this lesson.
+
+Review: We had duplicated code, so in order to reuse code in multiple places we created our own custom function component which is a function that accepts a props object and returns more react elements. Make sure function component starts with a capital letter so that bable will compile it to pass the function itself to react.CreateElement rather than the string. (Still dont know why this is true, React magic I guess). That way when react renders our element it knows what function to call. 
 
 
 
