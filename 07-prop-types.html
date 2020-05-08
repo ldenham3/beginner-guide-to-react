@@ -1,0 +1,55 @@
+<body>
+    <div id="root"></div>
+    
+	<script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+	<script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    
+    <script type="text/babel"> 
+
+        const rootElement = document.getElementById('root')
+
+        // Description = SayHello function component that accepts an object with props firstName and lastName
+        // Returns a div with text and the prop values
+        function SayHello({firstName, lastName}) {
+            return (
+                <div>
+                    Hello {firstName} {lastName}!
+                </div>
+            )
+        }
+        // Validates the tyoes of props passed to components when they are being rendered
+        // Description - Function to validate .propTypes equal to an object. There is a key for the prop we want to validate which is a function that takes the props, propname and component name so any time SayHello component is rendered, we can check that the first name prop is passed properly. 
+        // SayHello.propTypes = {
+        //     firstName(props, propName, componentName) {
+        //         if (typeof props[propName] !== 'string') {
+        //             return new Error(
+        //                 `The component ${componentName} needs the prop ${propName} to be a string, you passed a ${typeof props[propName]}`
+        //             )
+        //         return ('Whyyyyy')
+        //         }
+        //     }
+        // }
+        SayHello.propTypes = {
+            firstName(props, propName, componentName) {
+                
+                console.log('im at least in here')
+                if (typeof props[propName] !== 'string') {
+                    return new Error(
+                        `Hey, ${componentName} blah`,
+                    )
+                }
+            }
+        }
+
+        //Example of a misuse of a function component
+        const element = <SayHello firstName={false} />
+
+        console.log(element.props)
+        PropTypes.checkPropTypes(SayHello.propTypes);
+
+
+        ReactDOM.render(element, rootElement)
+    </script>
+</body>
