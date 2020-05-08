@@ -5,7 +5,47 @@
 	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 	<script type="text/babel">
 		const rootElement = document.getElementById('root')
-		const element = <div className="container">Hello World</div>
+		// Added
+		const children = 'Hello World'
+		// Added
+		const className = 'container'
+		// Added
+		const props = {children, className}
+		// Added for removed block
+		// const myChildren = 'Hello'
+		// Added for removed block
+		// const worldChildren = ' World'
+		// Added for removed block
+		// const myClassName = 'container'
+		// Added - can override anything in props because of how object.assign works (see below) by providing it after we spread the props in the props position for this element
+		const element = <div id="app-root" {...props} className="notContainer"/> 
+
+		// Added and Removed for above - interpolate onto the divs props position a spread of the props object + an id prop called app-root which gives the extends helper which is basically object.assign (look in script in head in dev tools) and bable extends the props we provided with the props that we are spreading so we get a single combined object for the second argument of the react.createElement call
+		// const element = <div id="app-root" {...props} />
+		
+		// Added and Removed for above - self closing div tags
+		// const element = <div className={className} children={children} />
+
+		// Added then Removed for above - children prop vs using react.CreateElement call
+		// const element = <div className={className}>{children}</div>
+		//For compariston to above - children is a special prop name that can also be provided like this:
+		// const element = <div className={className} children={children}></div>
+
+		// Added then Removed for above - adding another react element inside
+		// const element = (
+		// 	<div className={myClassName}>
+		// 		<span>Hello</span> 
+		// 		<strong>World</strong>
+		// 	</div>
+		// )
+
+		// Removed for above - including variables in classname and two in children positions (only one in each can be single line)
+		// const element = (
+		// 	<div className={myClassName}>
+		// 		{myChildren}
+		// 		{worldChildren}
+		// 	</div>
+		// )
 		ReactDOM.render(element, rootElement)
 	</script>
 </body>

@@ -127,9 +127,63 @@ Without a translater this will cause an unexpected token error because the brows
 	const element = <div className="container">Hello World</div>
 	```
 
+Getting bable (js compiler supporting next gen stuff like jsx) is a fucking nightmare so this lesson has it from unpkg which is bad and hopefully he eventually covers it. In browser bable transformer is apparelty 
+Bable has a converter on the website so you can see it.
+Script type must be text/babel for it to be grabbed by bable
+A new script tag will show in the head of developer tools which is the compiled version of the code
 
+Review: Author UI without React.createElement API and instead use JSX which is an html like syntax to author UI. To do this we need a compiler (transpiler?) like babel that will compile jsx to js so the browset can read it. Make sure to update the script types to text/babel, bable will look for them, compile them, and insert a new script that contains the compiled code.
 
+---------------------------------
+5) (file 4) Use JSX effectively with React
+---------------------------------
+Adding variables into param positions - make new variable and add the variable in {} ({} are used for interpolation - anything you put between the {} can be a js expression and whatever that expression evaluates to is the value that gets placed into the position for the react.createElement call)
+Remove "" and use {} to tell the bable compiler we want whats inside to be evaluated as an expression
+To check assignments, go to elements in dev tools and scroll down to the script, it will show what variable is being assigned to what
+{} basically tell babel to leave it alone and pass it directly as the property that you pass for the props/children arguments
+Children is just a special prop that you can provide as a shortcut/prop
+You can use children the prop or add children as aditional arguments
+JSX has self closing tags for divs
+You can overwrite props, whatever comes last applies in event of conflict
 
+Review: You can interpolate values with {} by putting any expression between the {} and have that expression passed along to the react.createElement API. Also you can spread props in the props position of a jsx element and they will be combined with the other props provided to that element in a declarative and deterministic way.
+
+-----------------------------------------------------------------
+6) (file 5) Render Two Elements Side By Side with React Fragments
+-----------------------------------------------------------------
+Putting 2 variables side bt side and passing them as the first argument is impossible. This in html:
+
+	```
+	<span>Hello</span>
+	<span>World</span>
+	```
+
+...has no solution in react. So React has fragments. Fragment is aspecial type of element and no props needed, can just provide children. So this looks like this in React:
+
+	```
+	const element = (
+		<React.Fragment>
+			<span>Hello</span> <span>World</span>
+		</React.Fragment>
+	)
+	```
+
+Passes React.Fragment as the first argument to React.createElement behind the scenes, the tag names are being passed as a string as the first argument to another React.createElement. 
+Apparently no one wants to use the React.createElement API directly so theres a solution in 05 but above is more conventional and cleaner with JSX
+Fragments let us put things side by side without needing a container like a div - useful for things like tables that have a very specific structure. This is so common. there is a special syntax for it, you can remove the React.Fragment and just have open and close tags:
+	
+	```
+	const element = (
+		<>
+			<span>Hello</span> <span>World</span>
+		</>
+	)
+	```
+Apparently babel 6 didnt have this shorthand, had to change to bable 7. file 05 on will use babel 7.8.3
+
+-----------------------------------------------------
+7) (file 06) Create a Simple Reusable React Component
+-----------------------------------------------------
 
 
 

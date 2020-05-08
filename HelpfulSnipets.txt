@@ -17,6 +17,32 @@ To create UI with JS only (document API):
 
 To create a UI with React: ***wait for best practice on number of args
 
+==========================
+ANATOMY OF A REACT ELEMENT
+==========================
+
+	React.createElement takes 2 or 3 arguments. 
+		-type of element (type)
+		-props = properties as object (can contain className and/or childred)
+		-OR children can be the third argument (keyword not required, still listed in props)
+
+	1 is always type, 2 is always an object, 3 is optional
+	React elements or arrays can also be children, either in children keyword in {} arg 2, or 3rd arg
+
+	(2 args)
+	const name-of-element('type-of-element', {
+		(props in an object)
+		children: '',
+		className: '',
+	})
+
+	(3 args)
+	const name-of-element('type-of-element', {
+			className: ''
+		},
+		'children values - still listed under props',
+	)
+
 
 ====================
 CREATING AN ELEMENT: 
@@ -84,3 +110,47 @@ With React (3 args, multiple children):
 		', Goodbye World',
 	)
 	```
+
+With React + JSX and one variable in children and one in className positions (single line)
+	```
+	const element = <div className={className}>{children}</div>
+	```
+
+With React + JSX and multiple variables in children and one in className positions
+	```
+	const element = (
+		<div className={myClassName}>
+			{myChildren}
+			{worldChildren}
+		</div>
+	)
+	```
+
+With React + JSX and new react elements in children and className positions 
+	```
+	const element = (
+		<div className={myClassName}>
+			<span>Hello</span> 
+			<strong>World</strong>
+		</div>
+	)
+	```
+
+With React + JSX - using children as additional arguments vs children prop shortcut
+
+	```	
+	const element = (<div className={className}>{children}</div>)
+	OR 
+	const element = (<div className={className} children={children}></div>)
+	```
+
+Using self closing tags for divs
+	```
+	const element = <div className={className} children={children} />
+	```
+
+Interpolate onto prop position a spread of an object
+	```
+	const element = <div {...props} />
+	```
+

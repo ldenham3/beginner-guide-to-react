@@ -1,0 +1,37 @@
+<body>
+    <div id="root"></div>
+    
+	<script src="https://unpkg.com/react@16.7.0/umd/react.production.min.js"></script>
+	<script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.production.min.js"></script>
+	<script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    
+    <script type="text/babel">
+        // Added and Removed for JSX solution without using React.create Element
+        // const helloElement = React.createElement('span', null, 'Hello')
+        // Added and Removed for JSX solution without using React.create Element
+        // const worldElement = React.createElement('span', null, 'World')
+        
+        // Added - shorthand for react.fragment
+        const element = (
+            <>
+                <span>Hello</span> <span>World</span>
+            </>
+        )
+
+        // Added and Removed - shows fragements without the shortcut
+        // const element = <React.Fragment>
+        //     <span>Hello</span> <span>World</span>
+        // </React.Fragment>
+
+        // Added and Removed - making an element that uses fragment to combine two variables, inelegant
+        // const element = React.createElement(
+        //     React.Fragment,
+        //     null,
+        //     helloElement,
+        //     ' ',
+        //     worldElement,
+        // )
+        // Edited
+        ReactDOM.render(element, document.getElementById('root'))
+    </script>
+</body>
