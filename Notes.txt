@@ -226,12 +226,80 @@ npm has more info on proptype options, also there are plugins that remove propty
 ----------------------------------------------------
 9) (file 08) Understand and Use Interpolation in JSX
 ----------------------------------------------------
+My solution will be greyed out, and ill note the differences in how he did it. 
+
+??? apparently element({text}) is destructuing the text prop "right there" and im still not sure what that means
+
+Demonstration of "jsx land to js land and back again" syntax flow from file: 
+
+	```
+	function CharacterCount({text}) {
+	//js when we start in the function, we can do js functions, if statements, etc. 
+
+		return (
+		//return () is still js
+
+			<div>
+			//jsx starts at open angle bracket and tag - we have prop syntax & children syntax 
+
+				{`The text "${text}" has `}
+				//open curly brace is js, but limited to only expression of js that evaluates to some value. no for loops or if statments. Strings, ternary, etc allowed. See eval below for explination. 
+
+				//jsx land between the {}
+
+				{text.length ? <strong>{text.length}</strong> : 'No'}
+				//the <strong></strong> tag is jsx again, but the {} in between is js. After the closing > is js again, jsx back at the closing curly brace
+
+				{' characters'}
+
+			</div>
+			//js after closing tag
+		)
+	```
+
+So why does the below snippet work?  
+
+	```
+	<div>
+		{`The text "${text}" has `}
+		{text.length ? <strong>text.length</strong> : 'No'}
+		{' characters'}
+	</div>
+	```
+ In the dev tools you can see what the jsx will be compiled to: 
+
+	```
+	return React.createElement(
+		"div", 
+		null,
+		"The test \"".concat(text, "\" has "),
+		text.length ? React.createElement(
+			"strong",
+			null,
+			text.length) : 'No',
+			' characters')
+		;
+
+ Showing why you cant have statments like this, it doesnt make sense to pass a statment as an argument to a function. Same reason that you cant use statements inside the curly braces of JSX, because the curly braces tell babel to take everything in the braces and stick it in the argument of the create element call. 
+        
+	```	
+	React.createElement('div', null, if(statement) {})
+	```
+
+Pay attention to how babel compiles your jsx. 
+
+Interpolation - I think its language smooshing. 
+Ex: html built in interpolation:
+	<body> to <script type="text/babel"> is html
+	after that tag its JS land. 
+	Also you can use things like <style></style> tags, where the tag is html but within the tag is css
+
+	js built in interpolation exs:
+	template literals - 'words here' are string land but if its {'words here "${text}" wordssss'} then the ${} is js land. This has the same limitations as jsx has for its interpolation, specifically you cant use if statments, for loops, switch statements etc. You use an expression, they can be complex but they have to be expressions
 
 
-
-
-
-
-
+----------------------------------------
+10) (file 09) Render a React Application
+----------------------------------------
 
 

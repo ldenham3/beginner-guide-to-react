@@ -1,11 +1,61 @@
 <body>
     <div id="root"></div>
-    
 	<script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
-    <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
     
     <script type="text/babel"> 
+    //Render-
+    //The text "Hello World" has 11 characters
+    //The text "" has No characters
+
+    // Class solution
+    function CharacterCount({text}) {
+        //due to interpolation, this whole expression can go in the div but i left it in case I got confused where it came from
+        // const length = text.length ? text.length : 'No'
+        return (
+            <div>
+                {`The text "${text}" has `} <strong>{text.length ? text.length : 'No'}</strong> characters
+            </div>
+        )
+
+        //if you wanted just a number bolded and not no
+        // return (
+        //     <div>
+        //         {`The text "${text}" has `}
+        //         {text.length ? <strong>{text.length}</strong> : 'No'}
+        //         {' characters'}
+        //     </div>
+        // )
+    }
+
+    // My solution
+    // function CharacterCount({text}) {
+    //     const inputLength = text.length
+    //     var charCount
+    //     if (inputLength < 0) {
+    //         charCount = " Negative "
+    //     } else if (inputLength == 0) {
+    //         charCount = " No "
+    //     } else {
+    //         charCount = inputLength
+    //     }
+    //     return (
+    //         <div>
+    //             The text {text} has {charCount} characters
+    //         </div>
+    //     )
+    // }
+
+    // React element
+    const element = (
+        // React Fragment
+        <>
+            <CharacterCount text="Hello World" />
+            <CharacterCount text="" />
+        </>
+    )
+
+    ReactDOM.render(element, document.getElementById('root'))
     </script>
 </body>
