@@ -302,4 +302,28 @@ Ex: html built in interpolation:
 10) (file 09) Render a React Application
 ----------------------------------------
 
+React compares elements returned at different times, runs a diff, and then surgically updates the DOM with only the changes since the last time you returned Jsx
 
+
+----------------------------------------
+11) (file 10) Styling React Components with className and inline styles
+----------------------------------------
+10.1 is my second pass, I ended friday on it and brain needs a redo
+
+??? What is the point of the style property at all
+??? Why does it accept an object in an object? style={{}}
+??? is props a reserved word or something he uses over and over and sometimes wrong
+??? Why do any of this, he never explains just changes shit
+Im clearly about done with this guy
+??? he says using size = "whatever" and defining it in Box means users no longer have to "concern themselves wtih the clas name that needs to be applied to create a small box" which is bullshit because they are trying to make a small box. they either need to use their own css or a property we create which they still have to learn exists and use. And given mose people know how to size without it, going digging for how this custom component is actually going to be MORE work for people. 
+
+-------------------------------------------
+12) (file 11) Use Event Handlers with React
+-------------------------------------------
+The last video put me in a totally shit mood, so from me to me: if my notes arent good later, thats why. 
+
+The setState and renderApp functions are not the typical way to rerender or manage the state of a react app but its to show better how events work. 
+
+The button onclick has an inline arrow function which i still need to understand better because he still hasnt explained it. other events can be used, like onfocus or onmouseover, etc. 
+
+In Reacts event handling system, you pass the event handler directly to the element that you want to attach the event to. Makes it easier to collow events and state updates. 
